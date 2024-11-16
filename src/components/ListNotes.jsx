@@ -1,12 +1,25 @@
+import Note from "./Note";
+
 export default function ListNotes() {
   return (
-    <div className="border lg:mt-5 mt-10 border-red-500 h-full">
-      <div className="pt-5 *:px-5 lg:*:px-10 *:py-1  *:rounded-full gap-3  border border-red-500 flex justify-center text-white">
+    <div className=" card rounded-tr-[100px] rounded-bl-[100px] lg:mt-5 mt-10 overflow-auto lg:h-[500px]">
+      <div className="pt-5 *:px-5 lg:*:px-10 *:py-1   gap-3 *:rounded-lg   flex justify-center text-white">
         <button className="bg-orange-500 hover:bg-transparent">Notes</button>
-        <button className="bg-sky-950 hover:bg-transparent">Archive</button>
+        <button className="bg-orange-500 hover:bg-transparent">Archive</button>
       </div>
-      <div className="text-white flex *:w-[200px] flex-wrap gap-2 justify-center items-center">
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, corporis.</div>
+      <div className="text-white flex py-2   flex-wrap  lg:gap-5 gap-2 justify-center items-center">
+        <Note />
+        <Note />
+        <Note />
+        <Note />
+        <Note />
+        <Note />
+        <Note />
+        <Note />
+        <Note />
+        <Note />
+        <Note />
+        <Note />
       </div>
     </div>
   );
