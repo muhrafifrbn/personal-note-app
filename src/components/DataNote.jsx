@@ -1,11 +1,11 @@
 import SearchNote from "./SearchNote";
 import ListNotes from "./ListNotes";
 
-export default function DataNote() {
+export default function DataNote({ note }) {
   return (
     <section className=" lg:w-[60%] w-full   h-full">
       <SearchNote />
-      <ListNotes />
+      <ListNotes note={note} />
     </section>
   );
 }
