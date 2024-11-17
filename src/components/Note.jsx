@@ -1,10 +1,15 @@
 /* eslint-disable react/prop-types */
-export default function Note({ note }) {
+export default function Note({ note, status }) {
   // console.log(note);
   return (
-    <div className=" w-[150px] lg:w-[220px] px-2 py-4 rounded-tr-[50px] rounded-bl-[50px] card bg-sky-950 hover:bg-white hover:text-black">
-      <h1 className="text-lg">{note.title}</h1>
-      <p className="h-[170px] text-sm py-2 px-3 overflow-auto ">{note.body}</p>
+    <div className=" w-[150px] lg:w-[220px] overflow-hidden pt-4 rounded-tr-[50px] rounded-bl-[50px] card bg-sky-950 hover:bg-white hover:text-black">
+      <h1 className="text-lg px-3">{note.title}</h1>
+      <p className="h-[170px] text-sm py-2 px-4 overflow-auto ">{note.body}</p>
+      <div className="pt-2 flex justify-end">{status == 1 ? <Button teks="Archive" /> : <Button teks="UnArchive" />}</div>
     </div>
   );
+}
+
+function Button({ teks }) {
+  return <button className="flex justify-center items-center hover:bg-red-600 hover:text-white w-full  card px-2 py-1 bg-orange-500">{teks}</button>;
 }

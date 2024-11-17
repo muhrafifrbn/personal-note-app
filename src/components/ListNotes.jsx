@@ -22,8 +22,8 @@ export default function ListNotes({ note }) {
 
   const unArchive = notesUnArchive();
   const archive = noteArchivd();
-  console.log(unArchive);
-  console.log(archive);
+  // console.log(unArchive);
+  // console.log(archive);
 
   return (
     <div className=" card rounded-tr-[100px] rounded-bl-[100px] lg:mt-5 mt-10 overflow-auto lg:h-[500px]">
@@ -35,7 +35,9 @@ export default function ListNotes({ note }) {
           Archive
         </button>
       </div>
-      <div className="text-white flex py-2   flex-wrap  lg:gap-5 gap-2 justify-center items-center">{status == 1 ? unArchive.map((e, i) => <Note note={e} key={i} />) : archive.map((e, i) => <Note note={e} key={i} />)}</div>
+      <div className="text-white flex py-2   flex-wrap  lg:gap-5 gap-2 justify-center items-center">
+        {status == 1 ? unArchive.map((e, i) => <Note status={status} note={e} key={i} />) : archive.map((e, i) => <Note status={status} note={e} key={i} />)}
+      </div>
     </div>
   );
 }

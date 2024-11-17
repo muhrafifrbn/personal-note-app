@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import SearchNote from "./SearchNote";
 import ListNotes from "./ListNotes";
 

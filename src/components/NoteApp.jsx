@@ -3,26 +3,34 @@ import Button from "./Button";
 import DataNote from "./DataNote";
 
 import { useState, useEffect } from "react";
-import { getInitialData } from "../utils/index";
+import { getInitialData, showFormattedDate } from "../utils/index";
 
 export default function NoteApp() {
-  const [note, setNote] = useState([]);
+  const [notes, setNotes] = useState([]);
+
+  const AddData = (titleNote, bodyNote) => {
+    const title = titleNote;
+    const body = bodyNote;
+    const id = +new Date();
+    const archived = false;
+    const createdAt = showFormattedDate(new Date());
+    const note = { id, title, body, archived, createdAt };
+    setNotes((value) => [...value, note]);
+  };
+
+  console.log(notes);
 
   useEffect(() => {
-    setNote(getInitialData);
+    setNotes(getInitialData);
   }, []);
-
-  // setTimeout(() => {
-  //   console.log(note);
-  // }, 1000);
 
   return (
     <section className="lg:px-10 px-2 pt-14 justify-between lg:flex lg:h-[650px]">
-      <InputNotes>
+      <InputNotes handleAddNote={AddData}>
         <Button teks="Reset" className="card px-2 lg:w-[125px] py-1 rounded-full w-[115px]  text-black hover:text-white transition duration-500 text-lg text-center bg-red-500 hover:bg-sky-950" />
         <Button teks="Add" className="card px-2 lg:w-[125px] py-1 rounded-full w-[115px]  text-black hover:text-white transition duration-500 text-lg text-center bg-lime-500 hover:bg-sky-950" />
       </InputNotes>
-      <DataNote note={note} />
+      <DataNote note={notes} />
     </section>
   );
 }
