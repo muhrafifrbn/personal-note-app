@@ -1,6 +1,8 @@
 import InputNotes from "./InputNotes";
 import Button from "./Button";
 import DataNote from "./DataNote";
+import SearchNote from "./SearchNote";
+import ListNotes from "./ListNotes";
 
 import { useState, useEffect } from "react";
 import { getInitialData, showFormattedDate } from "../utils/index";
@@ -18,7 +20,10 @@ export default function NoteApp() {
     setNotes((value) => [...value, note]);
   };
 
-  console.log(notes);
+  const changeArchiveNote = (note) => {
+    const data = notes.filter((e) => e.title.toLocaleLowerCase() !== note.title.toLocaleLowerCase());
+    setNotes(() => [...data, note]);
+  };
 
   useEffect(() => {
     setNotes(getInitialData);
@@ -30,7 +35,10 @@ export default function NoteApp() {
         <Button teks="Reset" className="card px-2 lg:w-[125px] py-1 rounded-full w-[115px]  text-black hover:text-white transition duration-500 text-lg text-center bg-red-500 hover:bg-sky-950" />
         <Button teks="Add" className="card px-2 lg:w-[125px] py-1 rounded-full w-[115px]  text-black hover:text-white transition duration-500 text-lg text-center bg-lime-500 hover:bg-sky-950" />
       </InputNotes>
-      <DataNote note={notes} />
+      <DataNote>
+        <SearchNote />
+        <ListNotes changeArchiveNote={changeArchiveNote} note={notes} />
+      </DataNote>
     </section>
   );
 }
