@@ -1,13 +1,20 @@
 /* eslint-disable react/prop-types */
 
 import { useState } from "react";
-export default function InputNotes({ children, handleAddNote }) {
+import Button from "./Button";
+
+export default function InputNotes({ handleAddNote }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
     handleAddNote(title, body);
+    setTitle("");
+    setBody("");
+  };
+
+  const handleReset = () => {
     setTitle("");
     setBody("");
   };
@@ -48,7 +55,10 @@ export default function InputNotes({ children, handleAddNote }) {
             className="focus:bg-slate-100 focus:text-black bg-transparent card text-2xl text-white w-full p-1 px-2 focus:outline-none focus:ring-sky-500 focus:ring-1 rounded-md lg:h-[150px] h-36  bg-slate-100"
           />
         </div>
-        <div className="px-2 mb-2 flex justify-center items-center gap-2">{children}</div>
+        <div className="px-2 mb-2 flex justify-center items-center gap-2">
+          <Button handleClick={handleReset} type="reset" teks="Reset" className="card px-2 lg:w-[125px] py-1 rounded-full w-[115px]  text-black hover:text-white transition duration-500 text-lg text-center bg-red-500 hover:bg-sky-950" />
+          <Button type="submit" teks="Add" className="card px-2 lg:w-[125px] py-1 rounded-full w-[115px]  text-black hover:text-white transition duration-500 text-lg text-center bg-lime-500 hover:bg-sky-950" />
+        </div>
       </form>
     </section>
   );
