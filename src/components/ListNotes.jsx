@@ -2,7 +2,7 @@
 import Note from "./Note";
 import { useState } from "react";
 
-export default function ListNotes({ note, changeArchiveNote }) {
+export default function ListNotes({ note, changeArchiveNote, deleteData }) {
   const [status, setStatus] = useState(1);
   const notesUnArchive = () => {
     return note.filter((e) => e.archived == false);
@@ -39,7 +39,9 @@ export default function ListNotes({ note, changeArchiveNote }) {
         </button>
       </div>
       <div className="text-white flex py-2 pt-5   flex-wrap  lg:gap-5 gap-2 justify-center items-center">
-        {status == 1 ? unArchive.map((e, i) => <Note handleArchive={handleArchive} status={status} note={e} key={i} />) : archive.map((e, i) => <Note handleArchive={handleArchive} status={status} note={e} key={i} />)}
+        {status == 1
+          ? unArchive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />)
+          : archive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />)}
       </div>
     </div>
   );

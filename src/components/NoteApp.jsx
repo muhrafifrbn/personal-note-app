@@ -18,6 +18,11 @@ export default function NoteApp() {
     setNotes((value) => [...value, note]);
   };
 
+  const deleteData = (note) => {
+    const data = notes.filter((el) => el.title != note.title);
+    setNotes([...data]);
+  };
+
   const changeArchiveNote = (note) => {
     const data = notes.filter((e) => e.title.toLocaleLowerCase() !== note.title.toLocaleLowerCase());
     setNotes(() => [...data, note]);
@@ -30,7 +35,7 @@ export default function NoteApp() {
   return (
     <section className="lg:px-10 px-2 pt-14 justify-between lg:flex lg:h-[650px]">
       <InputNotes handleAddNote={AddData} />
-      <DataNote notes={notes} changeArchiveNote={changeArchiveNote} />
+      <DataNote deleteData={deleteData} notes={notes} changeArchiveNote={changeArchiveNote} />
     </section>
   );
 }
