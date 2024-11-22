@@ -38,7 +38,7 @@ export default function ListNotes({ note, changeArchiveNote }) {
           Archive
         </button>
       </div>
-      <div className="text-white flex py-2   flex-wrap  lg:gap-5 gap-2 justify-center items-center">
+      <div className="text-white flex py-2 pt-5   flex-wrap  lg:gap-5 gap-2 justify-center items-center">
         {status == 1 ? unArchive.map((e, i) => <Note handleArchive={handleArchive} status={status} note={e} key={i} />) : archive.map((e, i) => <Note handleArchive={handleArchive} status={status} note={e} key={i} />)}
       </div>
     </div>
