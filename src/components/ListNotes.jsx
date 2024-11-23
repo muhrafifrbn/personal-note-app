@@ -39,10 +39,26 @@ export default function ListNotes({ note, changeArchiveNote, deleteData }) {
         </button>
       </div>
       <div className="text-white flex py-2 pt-5   flex-wrap  lg:gap-5 gap-2 justify-center items-center">
-        {status == 1
-          ? unArchive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />)
-          : archive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />)}
+        {note.length == 0 ? <NotesNotAvailable /> : <NotesAvailable status={status} handleArchive={handleArchive} deleteData={deleteData} archive={archive} unArchive={unArchive} />}
       </div>
     </div>
+  );
+}
+
+function NotesNotAvailable() {
+  return (
+    <>
+      <h1 className="bg-yellow-500 px-24 py-3 text-xl text-black rounded-full">Tidak Ada Catatan</h1>
+    </>
+  );
+}
+
+function NotesAvailable({ status, deleteData, handleArchive, unArchive, archive }) {
+  return (
+    <>
+      {status == 1
+        ? unArchive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />)
+        : archive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />)}
+    </>
   );
 }
