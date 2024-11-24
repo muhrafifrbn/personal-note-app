@@ -3,18 +3,19 @@ import InputNotes from "./InputNotes";
 import DataNote from "./DataNote";
 
 import { useState, useEffect } from "react";
-import { getInitialData, showFormattedDate } from "../utils/index";
+import { getInitialData } from "../utils/index";
 
 export default function NoteApp() {
   const [notes, setNotes] = useState([]);
 
   const AddData = (titleNote, bodyNote) => {
-    const title = titleNote;
-    const body = bodyNote;
-    const id = +new Date();
-    const archived = false;
-    const createdAt = showFormattedDate(new Date());
-    const note = { id, title, body, archived, createdAt };
+    const note = {
+      id: +new Date(),
+      title: titleNote,
+      body: bodyNote,
+      archived: false,
+      createdAt: new Date().toDateString(),
+    };
     setNotes((value) => [...value, note]);
   };
 

@@ -4,9 +4,6 @@ import { useState } from "react";
 
 export default function ListNotes({ note, changeArchiveNote, deleteData }) {
   const [status, setStatus] = useState(1);
-  const notesUnArchive = () => {
-    return note.filter((e) => e.archived == false);
-  };
 
   const handleTab1 = () => {
     setStatus(1);
@@ -15,13 +12,6 @@ export default function ListNotes({ note, changeArchiveNote, deleteData }) {
   const handleTab2 = () => {
     setStatus(2);
   };
-
-  const noteArchivd = () => {
-    return note.filter((e) => e.archived == true);
-  };
-
-  const unArchive = notesUnArchive();
-  const archive = noteArchivd();
 
   const handleArchive = (note) => {
     note.archived = !note.archived;
@@ -39,7 +29,7 @@ export default function ListNotes({ note, changeArchiveNote, deleteData }) {
         </button>
       </div>
       <div className="text-white flex py-2 pt-5   flex-wrap  lg:gap-5 gap-2 justify-center items-center">
-        {note.length == 0 ? <NotesNotAvailable /> : <NotesAvailable status={status} handleArchive={handleArchive} deleteData={deleteData} archive={archive} unArchive={unArchive} />}
+        <Notes status={status} deleteData={deleteData} handleArchive={handleArchive} notes={note} />
       </div>
     </div>
   );
@@ -53,12 +43,33 @@ function NotesNotAvailable() {
   );
 }
 
-function NotesAvailable({ status, deleteData, handleArchive, unArchive, archive }) {
-  return (
-    <>
-      {status == 1
-        ? unArchive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />)
-        : archive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />)}
-    </>
-  );
+function Notes({ status, deleteData, handleArchive, notes }) {
+  const notesUnArchive = () => {
+    return notes.filter((e) => e.archived == false);
+  };
+
+  const noteArchivd = () => {
+    return notes.filter((e) => e.archived == true);
+  };
+
+  const unArchive = notesUnArchive();
+  const archive = noteArchivd();
+
+  return <>{status == 1 ? <NoteUnArchive deleteData={deleteData} handleArchive={handleArchive} unArchive={unArchive} /> : <NoteArchive deleteData={deleteData} handleArchive={handleArchive} archive={archive} />}</>;
+}
+
+function NoteArchive({ deleteData, handleArchive, archive, status }) {
+  if (archive.length > 0) {
+    return archive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />);
+  } else {
+    return <NotesNotAvailable />;
+  }
+}
+
+function NoteUnArchive({ deleteData, handleArchive, unArchive, status }) {
+  if (unArchive.length > 0) {
+    return unArchive.map((e, i) => <Note handleDeleteData={deleteData} handleArchive={handleArchive} status={status} note={e} key={i} />);
+  } else {
+    return <NotesNotAvailable />;
+  }
 }

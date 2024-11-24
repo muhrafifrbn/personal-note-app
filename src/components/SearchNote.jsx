@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import video from "../assets/video.mp4";
 import { useState } from "react";
 
 export default function SearchNote({ handleSearch }) {
@@ -27,11 +26,6 @@ export default function SearchNote({ handleSearch }) {
           Search
         </button>
       </div>
-
-      <video autoPlay loop muted className="lg:block hidden fixed -z-50 top-0 left-0 right-0">
-        <source src={video} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
     </div>
   );
 }
