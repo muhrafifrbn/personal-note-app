@@ -2,7 +2,7 @@
 import Note from "./Note";
 import { useState } from "react";
 
-export default function ListNotes({ note, changeArchiveNote, deleteData }) {
+export default function ListNotes({ note, changeArchiveNote, deleteData, dataRef }) {
   const [status, setStatus] = useState(1);
 
   const handleTab1 = () => {
@@ -19,7 +19,7 @@ export default function ListNotes({ note, changeArchiveNote, deleteData }) {
   };
 
   return (
-    <div className=" card rounded-tr-[100px] rounded-bl-[100px] lg:mt-5 mt-10 overflow-auto lg:h-[500px]">
+    <div ref={(el) => (dataRef.current.listNotes = el)} className=" card rounded-tr-[100px] rounded-bl-[100px] lg:mt-5 mt-10 overflow-auto lg:h-[500px]">
       <div className="pt-5 *:px-5 lg:*:px-10 *:py-1   gap-3 *:rounded-lg   flex justify-center text-white">
         <button className={`${status == 1 ? "bg-orange-500" : "bg-sky-950 hover:bg-orange-500"}`} onClick={handleTab1}>
           Notes

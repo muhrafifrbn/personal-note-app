@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Button from "./Button";
 
-export default function InputNotes({ handleAddNote }) {
+export default function InputNotes({ handleAddNote, dataRef }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -21,7 +21,7 @@ export default function InputNotes({ handleAddNote }) {
 
   return (
     <section className=" card mx-auto rounded-3xl lg:mx-0 rounded-tr-[70px] rounded-b-[120px] lg:rounded-br-none lg:w-[30%] w-[90%] px-5 h-96  lg:h-[400px]  rounded-bl-[120px] lg:rounded-tr-[120px]">
-      <form action="" className="" onSubmit={handleClick}>
+      <form ref={(el) => (dataRef.current.form = el)} action="" className="" onSubmit={handleClick}>
         <div className="flex justify-center">
           <h3 className=" font-serif px-10 text-md font-semibold text-center -translate-y-4 bg-sky-950 text-white rounded-full">Add Notes</h3>
         </div>
